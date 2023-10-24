@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./css/style.css" />
+		<title>Les Petits Plats</title>
+	</head>
+	<body>
+		<header class="main-header">
+			<div class="logo-container">
+				<img src="./assets/img/Logo.png" alt="Logo Les petits plats" />
+			</div>
+			<h1>
+				CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES
+			</h1>
+			<label for="main-search" style="display: none"></label>
+			<input id="main-search" type="text" />
+		</header>
+		<main>
+			<header>
+				<div class="tag-search-container">
+					<div class="tag-menu">
+            <label for="ingredient">Ingrédients</label>
+						<input list="ingredients" name="ingredient" id="ingredient" />
+						<datalist id="ingredients">
+							<option value="Internet Explorer"></option>
+							<option value="Firefox"></option>
+							<option value="Chrome"></option>
+							<option value="Opera"></option>
+							<option value="Safari"></option>
+						</datalist>
+					</div>
+					<div class="tag-menu">
+            <label for="device">Appareils</label>
+						<input list="devices" name="device" id="device" />
+						<datalist id="devices">
+							<option value="Internet Explorer"></option>
+							<option value="Firefox"></option>
+							<option value="Chrome"></option>
+							<option value="Opera"></option>
+							<option value="Safari"></option>
+						</datalist>
+					</div>
+					<div class="tag-menu">
+            <label for="tool">Ustensils</label>
+						<input list="tools" name="tool" id="tool" />
+						<datalist id="tools">
+							<option value="Internet Explorer"></option>
+							<option value="Firefox"></option>
+							<option value="Chrome"></option>
+							<option value="Opera"></option>
+							<option value="Safari"></option>
+						</datalist>
+					</div>
+
+					<!-- <select class="tag-menu">
+						<label for="main-search" style="display: none"></label>
+						<input id="main-search" type="text" />
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+					</select>
+					<select class="tag-menu">
+						<label for="main-search" style="display: none"></label>
+						<input id="main-search" type="text" />
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+					</select>
+					<select class="tag-menu">
+						<label for="main-search" style="display: none"></label>
+						<input id="main-search" type="text" />
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+						<option value="">Tags</option>
+					</select> -->
+					<h2>XXX recettes</h2>
+				</div>
+				<div class="tag-selected">
+					<div class="tag">
+						<p>Name</p>
+						<a href="">x</a>
+					</div>
+					<div class="tag">
+						<p>Name</p>
+						<a href="">x</a>
+					</div>
+				</div>
+			</header>
+			<div class="article-grid">
+				<article class="card">
+					<div class="img-container">
+						<img src="./assets/img/recettes/Recette01.jpg" alt="" />
+					</div>
+					<div class="text-container">
+						<h3>Name</h3>
+						<h4>RECETTE</h4>
+						<p>
+							Mettre les glaçons à votre goût dans le blender, ajouter le lait,
+							la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à
+							avoir la consistence désirée.
+						</p>
+						<h4>Ingrédients</h4>
+						<div class="ingredients-grid">
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+						</div>
+					</div>
+				</article>
+				<article class="card">
+					<div class="img-container">
+						<img src="./assets/img/recettes/Recette02.jpg" alt="" />
+					</div>
+					<div class="text-container">
+						<h3>Name</h3>
+						<h4>RECETTE</h4>
+						<p>
+							Mettre les glaçons à votre goût dans le blender, ajouter le lait,
+							la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à
+							avoir la consistence désirée.
+						</p>
+						<h4>Ingrédients</h4>
+						<div class="ingredients-grid">
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+						</div>
+					</div>
+				</article>
+				<article class="card">
+					<div class="img-container">
+						<img src="./assets/img/recettes/Recette03.jpg" alt="" />
+					</div>
+					<div class="text-container">
+						<h3>Name</h3>
+						<h4>RECETTE</h4>
+						<p>
+							Mettre les glaçons à votre goût dans le blender, ajouter le lait,
+							la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à
+							avoir la consistence désirée.
+						</p>
+						<h4>Ingrédients</h4>
+						<div class="ingredients-grid">
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+							<div class="ingredient-container">
+								<p>Name</p>
+								<p>QTY</p>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</main>
+	</body>
+</html>

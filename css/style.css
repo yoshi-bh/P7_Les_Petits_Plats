@@ -1,0 +1,183 @@
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--Black: #1b1b1b;
+	--Grey: #7a7a7a;
+	--Yellow: #ffd15b;
+}
+
+body {
+	margin: 0;
+	background-color: #ededed;
+	color: var(--Black, #1b1b1b);
+	font-family: "Manrope", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 400;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	height: 40rem;
+	background-image: url(../assets/img/lampos-aritonang-24gR_9lCdes-unsplash.png);
+	background-size: cover;
+}
+
+.main-header .logo-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+	padding: 2.25rem;
+}
+
+.main-header h1 {
+	width: 45rem;
+	margin: 15rem auto 0 auto;
+	text-align: center;
+	color: var(--Yellow, #ffd15b);
+	font-family: "Anton";
+	font-size: 2.75rem;
+	font-weight: 400;
+}
+
+.main-header #main-search {
+	width: 65rem;
+	height: 4.5rem;
+	margin: 1.6rem auto 0 auto; /* Margin Auto not working */
+	border-radius: 0.69rem;
+  border: none;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	margin: 0 5rem 5rem 5rem;
+	/* background-color: #ededed; */
+}
+
+.tag-search-container {
+	position: relative;
+	display: flex;
+  margin: 1.3rem 0;
+	/* background-color: red; */
+}
+
+.tag-search-container .tag-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-menu input {
+  width: 10rem;
+  margin-right: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.63rem;
+  border: none;
+}
+
+.tag-search-container h2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 1rem 0;
+	color: var(--Black, #1b1b1b);
+	font-family: Anton;
+	font-size: 1.3125rem;
+	font-weight: 400;
+}
+
+.tag-selected {
+	display: flex;
+  margin: 1.3rem 0 2.6rem 0;
+	/* background-color: purple; */
+}
+
+.tag-selected .tag {
+  display: flex;
+  justify-content: space-between;
+  width: 12rem;
+  margin-right: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.63rem;
+	background-color: var(--Yellow, #ffd15b);
+  color: black;
+}
+
+.tag p {
+  margin: 0;
+}
+
+.tag a {
+  margin-top: -4px;
+  color: black;
+  font-size: large;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.article-grid {
+	display: grid;
+	justify-content: space-between;
+	grid-template-columns: auto auto auto;
+	/* background-color: chartreuse; */
+}
+
+.article-grid .card {
+	width: 27vw;
+	height: 45.7rem;
+	background-color: white;
+	border-radius: 1.31rem;
+	overflow: hidden;
+}
+
+.article-grid .img-container {
+	height: 15.8125rem;
+}
+
+.img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.text-container {
+	padding: 1.56rem;
+}
+
+.text-container h3 {
+	color: black;
+	font-family: Anton;
+	font-size: 1.125rem;
+	font-weight: 400;
+}
+
+.text-container h4 {
+	margin: 2rem 0 0 0;
+	color: var(--Grey, #7a7a7a);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.0675rem;
+	text-transform: uppercase;
+}
+
+.ingredients-grid {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+.ingredient-container {
+	margin: 1rem 0;
+}
+
+.ingredient-container p:nth-child(1) {
+	margin: 0.15rem 0;
+	font-weight: 500;
+}
+
+.ingredient-container p:nth-child(2) {
+	margin: 0.15rem 0;
+	color: var(--Grey, #7a7a7a);
+}
