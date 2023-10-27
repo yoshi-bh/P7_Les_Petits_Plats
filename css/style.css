@@ -122,6 +122,7 @@ main {
 	display: grid;
 	justify-content: space-between;
 	grid-template-columns: auto auto auto;
+  row-gap: 3rem;
 	/* background-color: chartreuse; */
 }
 
@@ -163,13 +164,19 @@ main {
 	text-transform: uppercase;
 }
 
+.text-container .description {
+  height: 4.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .ingredients-grid {
 	display: grid;
 	grid-template-columns: auto auto;
 }
 
 .ingredient-container {
-	margin: 1rem 0;
+	margin: 0.8rem 0;
 }
 
 .ingredient-container p:nth-child(1) {
