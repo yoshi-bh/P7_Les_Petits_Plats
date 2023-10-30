@@ -23,13 +23,20 @@ class RecipeCard {
 		for (let ingredientObj of this._ingredients) {
 			ingredientsElemList += `<div class="ingredient-container">
                                 <p>${ingredientObj.ingredient}</p>
-                                <p>${ingredientObj.quantity}${ingredientObj.unit}</p>
+                                <p>${
+																	ingredientObj.quantity !== undefined
+																		? ingredientObj.quantity
+																		: ""
+																} ${
+				ingredientObj.unit !== undefined ? ingredientObj.unit : ""
+			}</p>
                               </div>`;
 		}
 
 		const recipeCardContent = `<div class="img-container">
                                 <img src="./assets/img/recettes/${this._image}" alt="${this._name}" />
                               </div>
+															<p class="time">${this._time}min</p>
                               <div class="text-container">
                                 <h3>${this._name}</h3>
                                 <h4>RECETTE</h4>

@@ -30,6 +30,11 @@ async function init() {
 
 	// Update Display
 	displayRecipes(recipesElem);
+	initDropdownMenus();
+	updateIngredientsOpt(recipesElem);
+	updateAppliancesOpt(recipesElem);
+	updateUstensilsOpt(recipesElem);
+	// displayTags()
 }
 
 init();

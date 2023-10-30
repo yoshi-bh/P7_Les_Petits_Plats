@@ -17,19 +17,23 @@ body {
 	font-weight: 400;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
 .main-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 40rem;
 	background-image: url(../assets/img/lampos-aritonang-24gR_9lCdes-unsplash.png);
 	background-size: cover;
 }
 
 .main-header .logo-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 	padding: 2.25rem;
 }
 
@@ -48,7 +52,7 @@ body {
 	height: 4.5rem;
 	margin: 1.6rem auto 0 auto; /* Margin Auto not working */
 	border-radius: 0.69rem;
-  border: none;
+	border: none;
 }
 
 main {
@@ -61,21 +65,21 @@ main {
 .tag-search-container {
 	position: relative;
 	display: flex;
-  margin: 1.3rem 0;
+	margin: 1.3rem 0;
 	/* background-color: red; */
 }
 
 .tag-search-container .tag-menu {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .tag-menu input {
-  width: 10rem;
-  margin-right: 1rem;
-  padding: 1rem 1.2rem;
-  border-radius: 0.63rem;
-  border: none;
+	width: 10rem;
+	margin-right: 1rem;
+	padding: 1rem 1.2rem;
+	border-radius: 0.63rem;
+	border: none;
 }
 
 .tag-search-container h2 {
@@ -91,42 +95,43 @@ main {
 
 .tag-selected {
 	display: flex;
-  margin: 1.3rem 0 2.6rem 0;
+	margin: 1.3rem 0 2.6rem 0;
 	/* background-color: purple; */
 }
 
 .tag-selected .tag {
-  display: flex;
-  justify-content: space-between;
-  width: 12rem;
-  margin-right: 1rem;
-  padding: 1rem 1.2rem;
-  border-radius: 0.63rem;
+	display: flex;
+	justify-content: space-between;
+	width: 12rem;
+	margin-right: 1rem;
+	padding: 1rem 1.2rem;
+	border-radius: 0.63rem;
 	background-color: var(--Yellow, #ffd15b);
-  color: black;
+	color: black;
 }
 
 .tag p {
-  margin: 0;
+	margin: 0;
 }
 
 .tag a {
-  margin-top: -4px;
-  color: black;
-  font-size: large;
-  font-weight: 700;
-  text-decoration: none;
+	margin-top: -4px;
+	color: black;
+	font-size: large;
+	font-weight: 700;
+	text-decoration: none;
 }
 
 .article-grid {
 	display: grid;
 	justify-content: space-between;
 	grid-template-columns: auto auto auto;
-  row-gap: 3rem;
+	row-gap: 3rem;
 	/* background-color: chartreuse; */
 }
 
 .article-grid .card {
+	position: relative;
 	width: 27vw;
 	height: 45.7rem;
 	background-color: white;
@@ -144,8 +149,25 @@ main {
 	object-fit: cover;
 }
 
+.time {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 1.1rem 0.9rem;
+	padding: 0.2rem 0.7rem;
+	background-color: var(--Yellow, #ffd15b);
+	border-radius: 0.8rem;
+	font-size: 0.7rem;
+}
+
 .text-container {
 	padding: 1.56rem;
+	height: calc(45.7rem - 15.8125rem);
+	overflow: auto;
+}
+
+.text-container::-webkit-scrollbar {
+	display: none;
 }
 
 .text-container h3 {
@@ -165,9 +187,8 @@ main {
 }
 
 .text-container .description {
-  height: 4.75rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	height: 4.75rem;
+	overflow: hidden;
 }
 
 .ingredients-grid {
