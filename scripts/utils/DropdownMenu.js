@@ -1,11 +1,11 @@
-function updateIngredientsOpt(recipesElem) {
+function updateIngredientsOpt(recipesData) {
 	let options = [];
 	let optionsElems;
 
-	for (let recipe of recipesElem) {
-		for (let ingredient of recipe._ingredients) {
-			if (!options.includes(ingredient.ingredient)) {
-				options.push(ingredient.ingredient);
+	for (let recipe of recipesData) {
+		for (let ingredient of recipe.ingredients) {
+			if (!options.includes(ingredient.ingredient.toLowerCase())) {
+				options.push(ingredient.ingredient.toLowerCase());
 				optionsElems += `<option value="${ingredient.ingredient}"></option>`;
 			}
 		}
@@ -14,28 +14,28 @@ function updateIngredientsOpt(recipesElem) {
 	datalistElem.innerHTML = optionsElems;
 }
 
-function updateAppliancesOpt(recipesElem) {
+function updateAppliancesOpt(recipesData) {
 	let options = [];
 	let optionsElems;
 
-	for (let recipe of recipesElem) {
-		if (!options.includes(recipe._appliance)) {
-			options.push(recipe._appliance);
-			optionsElems += `<option value="${recipe._appliance}"></option>`;
+	for (let recipe of recipesData) {
+		if (!options.includes(recipe.appliance.toLowerCase())) {
+			options.push(recipe.appliance.toLowerCase());
+			optionsElems += `<option value="${recipe.appliance}"></option>`;
 		}
 	}
 	const datalistElem = document.querySelector("#appliances");
 	datalistElem.innerHTML = optionsElems;
 }
 
-function updateUstensilsOpt(recipesElem) {
+function updateUstensilsOpt(recipesData) {
 	let options = [];
 	let optionsElems;
 
-	for (let recipe of recipesElem) {
-		for (let ustensil of recipe._ustensils) {
-			if (!options.includes(ustensil)) {
-				options.push(ustensil);
+	for (let recipe of recipesData) {
+		for (let ustensil of recipe.ustensils) {
+			if (!options.includes(ustensil.toLowerCase())) {
+				options.push(ustensil.toLowerCase());
 				optionsElems += `<option value="${ustensil}"></option>`;
 			}
 		}
@@ -46,15 +46,15 @@ function updateUstensilsOpt(recipesElem) {
 
 function AddInputListener(el, type) {
 	el.addEventListener("change", function (e) {
-		timer = setTimeout(function () {
-			// console.log(el.value);
-			addTag(el.value, type);
-      el.value = "";
-		}, 1);
+		// timer = setTimeout(function () {
+		// console.log(el.value);
+		addTag(el.value, type);
+		el.value = "";
+		// }, 1);
 	});
-	el.addEventListener("blur", function (e) {
-		clearTimeout(timer);
-	});
+	// el.addEventListener("blur", function (e) {
+	// 	clearTimeout(timer);
+	// });
 }
 
 function initDropdownMenus() {
