@@ -1,12 +1,19 @@
-function updateIngredientsOpt(recipesData) {
+function updateIngredientsOpt(recipesData, recipesTag, filter = "") {
 	let options = [];
-	let optionsElems;
+	let optionsElems = "";
+
+	console.log(filter);
+	console.log(recipesData);
 
 	for (let recipe of recipesData) {
 		for (let ingredient of recipe.ingredients) {
-			if (!options.includes(ingredient.ingredient.toLowerCase())) {
+			let isFilter = ingredient.ingredient
+				.toLowerCase()
+				.includes(filter.toLowerCase());
+			console.log(ingredient.ingredient + " --> " + isFilter);
+			if (!options.includes(ingredient.ingredient.toLowerCase()) && isFilter) {
 				options.push(ingredient.ingredient.toLowerCase());
-				optionsElems += `<option value="${ingredient.ingredient}"></option>`;
+				optionsElems += `<li onclick=addTag('${ingredient.ingredient}', 'ingredient')>${ingredient.ingredient}</li>`;
 			}
 		}
 	}
@@ -45,16 +52,22 @@ function updateUstensilsOpt(recipesData) {
 }
 
 function AddInputListener(el, type) {
-	el.addEventListener("change", function (e) {
-		// timer = setTimeout(function () {
-		// console.log(el.value);
-		addTag(el.value, type);
-		el.value = "";
-		// }, 1);
+	el.addEventListener("input", function (e) {
+		switch (type) {
+			case "ingredient":
+				updtIngrOpt(el.value);
+				break;
+			case "appliance":
+				updateappliancesOpt();
+				break;
+			case "ustensil":
+				updateustensilsOpt();
+				break;
+		}
+		// if (el.)
+		// addTag(el.value, type);
+		// el.value = "";
 	});
-	// el.addEventListener("blur", function (e) {
-	// 	clearTimeout(timer);
-	// });
 }
 
 function initDropdownMenus() {

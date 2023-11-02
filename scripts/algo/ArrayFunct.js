@@ -6,6 +6,7 @@ let appliances = [];
 let ustensils = [];
 
 function filterOptions() {
+	console.log("FILTER OPT");
 	const inputValue = document.querySelector("#main-search").value.toLowerCase();
 
 	filteredRecipes = [];
@@ -66,25 +67,33 @@ function removeTag(elem, type) {
 	// console.log(tags);
 
 	elem.parentNode.remove();
-  search();
+	search();
 }
 
 function filterIngredients(i) {
 	if (ingredients.length === 0) {
 		return true;
 	}
-	console.log("filtering Ingredients");
+	let hasMatch = false;
 	for (let ingredientTag of ingredients) {
+		// console.log("filtering for " + ingredientTag);
+		// console.log(filteredRecipes[i]);
+		// console.log(ingredients);
 		for (let ingredient of filteredRecipes[i].ingredients) {
 			// console.log(`${ingredient.ingredient} VS ${ingredientTag}`);
 			if (ingredient.ingredient.toLowerCase() === ingredientTag.toLowerCase()) {
 				console.log("found a match!");
-				return true;
+				hasMatch = true;
+				break;
 			}
 		}
+		if (!hasMatch) {
+			filteredRecipes.splice(i, 1);
+			return false;
+		}
+		hasMatch = false;
 	}
-	filteredRecipes.splice(i, 1);
-	return false;
+	return true;
 }
 
 function filterAppliances(i) {
@@ -113,16 +122,22 @@ function filterUstensils(i) {
 	}
 	console.log("filtering Ustensils");
 	for (let ustensilTag of ustensils) {
+		let hasMatch = false;
 		for (let ustensil of filteredRecipes[i].ustensils) {
 			// console.log(`${ustensil.ustensil} VS ${ustensilTag}`);
 			if (ustensil.toLowerCase() === ustensilTag.toLowerCase()) {
 				console.log("found a match!");
-				return true;
+				hasMatch = true;
+				break;
 			}
 		}
+		if (!hasMatch) {
+			filteredRecipes.splice(i, 1);
+			return false;
+		}
+		hasMatch = false;
 	}
-	filteredRecipes.splice(i, 1);
-	return false;
+	return true;
 }
 
 function filterTags() {
@@ -143,22 +158,47 @@ function filterTags() {
 }
 
 function search() {
-	filterOptions();
+	if (document.querySelector("#main-search").value.length >= 3) filterOptions();
+	else filteredRecipes = new Array(...recipes);
+	console.log("searching...........");
+	console.log(filteredRecipes);
+	console.log(recipes);
 	filterTags();
-	displayRecipes(filteredRecipes);
-	updateIngredientsOpt(filteredRecipes);
-	updateAppliancesOpt(filteredRecipes);
-	updateUstensilsOpt(filteredRecipes);
+	if (filteredRecipes.length <= 0) {
+		displayNoResult();
+		filteredRecipes = new Array(...recipes);
+	} else {
+		console.log("ELSE");
+		console.log(filteredRecipes);
+		displayRecipes(filteredRecipes);
+	}
 	resetTags();
 	displayTags(ingredients, "ingredient");
 	displayTags(appliances, "appliance");
 	displayTags(ustensils, "ustensil");
+	updateIngredientsOpt(filteredRecipes, recipes);
+	// updateIngredientsOpt(filteredRecipes);
+	updateAppliancesOpt(filteredRecipes);
+	updateUstensilsOpt(filteredRecipes);
+}
+
+function updtIngrOpt(filter) {
+	updateIngredientsOpt(filteredRecipes, recipes, filter);
+}
+function updtApplOpt(filter) {
+	updateAppliancesOpt(filteredRecipes, recipes, filter);
+}
+function updtUstlOpt(filter) {
+	updateUstensilsOpt(filteredRecipes, recipes, filter);
 }
 
 function checkSrchUpdate() {
 	const input = document.querySelector("#main-search");
 
-	if (input.value.length < 3) {
+	if (
+		input.value.length < 3 &&
+		[...ingredients, ...appliances, ...ustensils].length === 0
+	) {
 		console.log("not long enough!");
 		return;
 	} else {
@@ -168,6 +208,7 @@ function checkSrchUpdate() {
 
 function initSrchFunct(recipesData) {
 	recipes = recipesData;
+  filterTags();
 
 	document
 		.querySelector("#main-search")

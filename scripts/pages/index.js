@@ -9,7 +9,17 @@ async function getData() {
 // 	return Array.from(recipesData, (recipe) => new RecipeCard(recipe));
 // }
 
-function displayRecipes(recipesData, filter = []) {
+function displayNoResult() {
+	console.log("NO RESULT!!!");
+	document.querySelector(".article-grid").innerHTML = "";
+	const noResultContainer = document.querySelector(".no-result-container");
+	const inputValue = document.querySelector("#main-search").value;
+
+	noResultContainer.innerHTML = `<p>Aucune recette ne contient '${inputValue}' vous pouvez chercher «tarte aux pommes», «poisson», etc.</p>`;
+}
+
+function displayRecipes(recipesData) {
+	document.querySelector(".no-result-container").innerHTML = "";
 	const nbRecipesElem = document.querySelector(".tag-search-container h2");
 	const recipesGrid = document.querySelector(".article-grid");
 
@@ -29,11 +39,11 @@ async function init() {
 	// );
 
 	// Update Display
-	// displayRecipes(recipesData);
+	displayRecipes(recipesData);
 	initDropdownMenus();
-	// updateIngredientsOpt(recipesElem);
-	// updateAppliancesOpt(recipesElem);
-	// updateUstensilsOpt(recipesElem);
+	updateIngredientsOpt(recipesData);
+	updateAppliancesOpt(recipesData);
+	updateUstensilsOpt(recipesData);
 	// displayTags()
 
 	initSrchFunct(recipesData);
