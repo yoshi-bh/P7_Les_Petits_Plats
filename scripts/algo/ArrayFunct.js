@@ -15,22 +15,14 @@ function filterOptions() {
 		document.querySelector("#main-search").value
 	);
 
-	filteredRecipes = [];
-	for (let recipe of recipes) {
-		if (
+	filteredRecipes = recipes.filter(
+		(recipe) =>
 			recipe.name.toLowerCase().includes(inputValue) ||
-			recipe.description.toLowerCase().includes(inputValue)
-		) {
-			filteredRecipes.push(recipe);
-		} else {
-			for (let ingredient of recipe.ingredients) {
-				if (ingredient.ingredient.toLowerCase().includes(inputValue)) {
-					filteredRecipes.push(recipe);
-					break;
-				}
-			}
-		}
-	}
+			recipe.description.toLowerCase().includes(inputValue) ||
+			recipe.ingredients.some((ingredient) =>
+				ingredient.ingredient.toLowerCase().includes(inputValue)
+			)
+	);
 }
 
 function addTag(newTag, type) {
@@ -45,122 +37,62 @@ function addTag(newTag, type) {
 			ustensils.push(newTag);
 			break;
 	}
-	console.log("updating tag: " + type);
-	console.log(newTag);
 	search();
 }
 
 function removeTag(elem, type) {
-	console.log(type);
 	switch (type) {
 		case "ingredient":
 			ingredients.splice(ingredients.indexOf(elem), 1);
-			console.log(ingredients);
 			break;
 		case "appliance":
 			appliances.splice(appliances.indexOf(elem), 1);
-			console.log(appliances);
 			break;
 		case "ustensil":
 			ustensils.splice(ustensils.indexOf(elem), 1);
-			console.log(ustensils);
 			break;
 	}
-	// console.log(tags);
-	// tags = tags.filter(
-	// 	(tag) => tag !== elem.parentNode.querySelector("p").innerHTML
-	// );
-	// console.log(tags);
 
-	// elem.parentNode.remove();
 	search();
 }
 
-function filterIngredients(i) {
-	if (ingredients.length === 0) {
-		return true;
-	}
-	let hasMatch = false;
-	for (let ingredientTag of ingredients) {
-		// console.log("filtering for " + ingredientTag);
-		// console.log(filteredRecipes[i]);
-		// console.log(ingredients);
-		for (let ingredient of filteredRecipes[i].ingredients) {
-			// console.log(`${ingredient.ingredient} VS ${ingredientTag}`);
-			if (ingredient.ingredient.toLowerCase() === ingredientTag.toLowerCase()) {
-				console.log("found a match!");
-				hasMatch = true;
-				break;
-			}
-		}
-		if (!hasMatch) {
-			filteredRecipes.splice(i, 1);
-			return false;
-		}
-		hasMatch = false;
-	}
-	return true;
+function filterIngredients() {
+	ingredients.forEach(
+		(ingredientTag) =>
+			(filteredRecipes = filteredRecipes.filter((fRecipe) =>
+				fRecipe.ingredients.some(
+					(ingredient) =>
+						ingredient.ingredient.toLowerCase() === ingredientTag.toLowerCase()
+				)
+			))
+	);
 }
 
-function filterAppliances(i) {
-	if (appliances.length === 0) {
-		return true;
-	}
-	console.log("filtering Appliances");
-	for (let applianceTag of appliances) {
-		// for (let appliance of filteredRecipes[i].appliances) {
-		// console.log(`${appliance.appliance} VS ${applianceTag}`);
-		if (
-			filteredRecipes[i].appliance.toLowerCase() === applianceTag.toLowerCase()
-		) {
-			console.log("found a match!");
-			return true;
-		}
-		// }
-	}
-	filteredRecipes.splice(i, 1);
-	return false;
+function filterAppliances() {
+	appliances.forEach(
+		(applianceTag) =>
+			(filteredRecipes = filteredRecipes.filter(
+				(fRecipe) =>
+					fRecipe.appliance.toLowerCase() === applianceTag.toLowerCase()
+			))
+	);
 }
 
-function filterUstensils(i) {
-	if (ustensils.length === 0) {
-		return true;
-	}
-	console.log("filtering Ustensils");
-	for (let ustensilTag of ustensils) {
-		let hasMatch = false;
-		for (let ustensil of filteredRecipes[i].ustensils) {
-			// console.log(`${ustensil.ustensil} VS ${ustensilTag}`);
-			if (ustensil.toLowerCase() === ustensilTag.toLowerCase()) {
-				console.log("found a match!");
-				hasMatch = true;
-				break;
-			}
-		}
-		if (!hasMatch) {
-			filteredRecipes.splice(i, 1);
-			return false;
-		}
-		hasMatch = false;
-	}
-	return true;
+function filterUstensils() {
+	ustensils.forEach(
+		(ustensilTag) =>
+			(filteredRecipes = filteredRecipes.filter((fRecipe) =>
+				fRecipe.ustensils.some(
+					(ustensil) => ustensil.toLowerCase() === ustensilTag.toLowerCase()
+				)
+			))
+	);
 }
 
 function filterTags() {
-	for (let i = filteredRecipes.length; i; i--) {
-		if (!filterIngredients(i - 1)) {
-			console.log("skiping to next recipe INGR missing");
-			continue;
-		}
-		if (!filterAppliances(i - 1)) {
-			console.log("skiping to next recipe APPL missing");
-			continue;
-		}
-		if (!filterUstensils(i - 1)) {
-			console.log("skiping to next recipe USTN missing");
-			continue;
-		}
-	}
+	filterIngredients();
+	filterAppliances();
+	filterUstensils();
 }
 
 function search() {
