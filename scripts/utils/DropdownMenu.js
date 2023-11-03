@@ -1,54 +1,101 @@
-function updateIngredientsOpt(recipesData, recipesTag, filter = "") {
+function updateIngredientsOpt(recipesData, recipesTag = [], filter = "") {
+	const datalistElem = document.querySelector("#ingredients");
+	datalistElem.innerHTML = "";
 	let options = [];
-	let optionsElems = "";
+	let newRecipesTag = [];
 
-	console.log(filter);
-	console.log(recipesData);
-
+	console.log(recipesTag);
+	for (let rTag of recipesTag) {
+		newRecipesTag.push(rTag.toLowerCase());
+		console.log("new dropdown tag");
+		let li = document.createElement("li");
+		li.className = "clickable dropdown-tag";
+		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
+		li.onclick = () => removeTag(rTag, "ingredient");
+		datalistElem.appendChild(li);
+	}
 	for (let recipe of recipesData) {
 		for (let ingredient of recipe.ingredients) {
-			let isFilter = ingredient.ingredient
-				.toLowerCase()
-				.includes(filter.toLowerCase());
-			console.log(ingredient.ingredient + " --> " + isFilter);
-			if (!options.includes(ingredient.ingredient.toLowerCase()) && isFilter) {
+			if (
+				!options.includes(ingredient.ingredient.toLowerCase()) &&
+				!newRecipesTag.includes(ingredient.ingredient.toLowerCase()) &&
+				ingredient.ingredient.toLowerCase().includes(filter.toLowerCase())
+			) {
 				options.push(ingredient.ingredient.toLowerCase());
-				optionsElems += `<li onclick=addTag('${ingredient.ingredient}', 'ingredient')>${ingredient.ingredient}</li>`;
+				let li = document.createElement("li");
+				li.className = "clickable";
+				li.innerHTML = ingredient.ingredient;
+				li.onclick = () => addTag(ingredient.ingredient, "ingredient");
+				datalistElem.appendChild(li);
 			}
 		}
 	}
-	const datalistElem = document.querySelector("#ingredients");
-	datalistElem.innerHTML = optionsElems;
 }
 
-function updateAppliancesOpt(recipesData) {
+function updateAppliancesOpt(recipesData, recipesTag = [], filter = "") {
+	const datalistElem = document.querySelector("#appliances");
+	datalistElem.innerHTML = "";
 	let options = [];
-	let optionsElems;
+	let newRecipesTag = [];
 
+	console.log(recipesTag);
+	for (let rTag of recipesTag) {
+		newRecipesTag.push(rTag.toLowerCase());
+		console.log("new dropdown tag");
+		let li = document.createElement("li");
+		li.className = "clickable dropdown-tag";
+		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
+		li.onclick = () => removeTag(rTag, "appliance");
+		datalistElem.appendChild(li);
+	}
 	for (let recipe of recipesData) {
-		if (!options.includes(recipe.appliance.toLowerCase())) {
+		if (
+			!options.includes(recipe.appliance.toLowerCase()) &&
+			!newRecipesTag.includes(recipe.appliance.toLowerCase()) &&
+			recipe.appliance.toLowerCase().includes(filter.toLowerCase())
+		) {
 			options.push(recipe.appliance.toLowerCase());
-			optionsElems += `<option value="${recipe.appliance}"></option>`;
+			let li = document.createElement("li");
+			li.className = "clickable";
+			li.innerHTML = recipe.appliance;
+			li.onclick = () => addTag(recipe.appliance, "appliance");
+			datalistElem.appendChild(li);
 		}
 	}
-	const datalistElem = document.querySelector("#appliances");
-	datalistElem.innerHTML = optionsElems;
 }
 
-function updateUstensilsOpt(recipesData) {
+function updateUstensilsOpt(recipesData, recipesTag = [], filter = "") {
+	const datalistElem = document.querySelector("#ustensils");
+	datalistElem.innerHTML = "";
 	let options = [];
-	let optionsElems;
+	let newRecipesTag = [];
 
+	console.log(recipesTag);
+	for (let rTag of recipesTag) {
+		newRecipesTag.push(rTag.toLowerCase());
+		console.log("new dropdown tag");
+		let li = document.createElement("li");
+		li.className = "clickable dropdown-tag";
+		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
+		li.onclick = () => removeTag(rTag, "ustensil");
+		datalistElem.appendChild(li);
+	}
 	for (let recipe of recipesData) {
 		for (let ustensil of recipe.ustensils) {
-			if (!options.includes(ustensil.toLowerCase())) {
+			if (
+				!options.includes(ustensil.toLowerCase()) &&
+				!newRecipesTag.includes(ustensil.toLowerCase()) &&
+				ustensil.toLowerCase().includes(filter.toLowerCase())
+			) {
 				options.push(ustensil.toLowerCase());
-				optionsElems += `<option value="${ustensil}"></option>`;
+				let li = document.createElement("li");
+				li.className = "clickable";
+				li.innerHTML = ustensil;
+				li.onclick = () => addTag(ustensil, "ustensil");
+				datalistElem.appendChild(li);
 			}
 		}
 	}
-	const datalistElem = document.querySelector("#ustensils");
-	datalistElem.innerHTML = optionsElems;
 }
 
 function AddInputListener(el, type) {
@@ -58,16 +105,29 @@ function AddInputListener(el, type) {
 				updtIngrOpt(el.value);
 				break;
 			case "appliance":
-				updateappliancesOpt();
+				updtApplOpt(el.value);
 				break;
 			case "ustensil":
-				updateustensilsOpt();
+				updtUstlOpt(el.value);
 				break;
 		}
-		// if (el.)
-		// addTag(el.value, type);
-		// el.value = "";
 	});
+}
+
+function openDropdown(el) {
+	console.log(el.nextElementSibling.classList);
+	// el.nextElementSibling.classList.toggle("open");
+	el.parentElement.classList.toggle("open");
+	console.log(el.nextElementSibling.classList);
+
+	switch (el.getAttribute("for")) {
+		case "ingredient":
+			break;
+		case "appliance":
+			break;
+		case "ustensil":
+			break;
+	}
 }
 
 function initDropdownMenus() {

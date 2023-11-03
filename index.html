@@ -32,24 +32,42 @@
 			<header>
 				<div class="tag-search-container">
 					<div class="tag-menu">
-						<label for="ingredient">Ingrédients</label>
+						<div class="dropdown-button clickable" onclick="openDropdown(this)">
+							<label
+								class="clickable"
+								onclick="openDropdown(this)"
+								for="ingredient"
+								>Ingrédients</label
+							><i class="arrow-dropdown"></i>
+						</div>
 						<div class="dropdown">
 							<input name="ingredient" id="ingredient" />
-							<!-- <datalist id="ingredients"></datalist> -->
-              <ul id="ingredients">
-                
-              </ul>
+							<ul id="ingredients"></ul>
 						</div>
 					</div>
 					<div class="tag-menu">
-						<label for="appliance">Appareils</label>
-						<input list="appliances" name="appliance" id="appliance" />
-						<datalist id="appliances"> </datalist>
+						<div class="dropdown-button clickable" onclick="openDropdown(this)">
+							<label
+								class="clickable"
+								onclick="openDropdown(this)"
+								for="appliance"
+								>Appareils</label
+							><i class="arrow-dropdown"></i>
+						</div>
+						<div class="dropdown">
+							<input name="appliance" id="appliance" />
+							<ul id="appliances"></ul>
+						</div>
 					</div>
 					<div class="tag-menu">
-						<label for="ustensil">Ustensils</label>
-						<input list="ustensils" name="ustensil" id="ustensil" />
-						<datalist id="ustensils"> </datalist>
+						<div class="dropdown-button clickable" onclick="openDropdown(this)">
+							<label for="ustensil">Ustensils</label
+							><i class="arrow-dropdown"></i>
+						</div>
+						<div class="dropdown">
+							<input name="ustensil" id="ustensil" />
+							<ul id="ustensils"></ul>
+						</div>
 					</div>
 					<h2>XXX recettes</h2>
 				</div>

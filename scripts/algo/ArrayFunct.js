@@ -5,9 +5,15 @@ let ingredients = [];
 let appliances = [];
 let ustensils = [];
 
+function sanitizeString(str) {
+	str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+	return str.trim().toLowerCase();
+}
+
 function filterOptions() {
-	console.log("FILTER OPT");
-	const inputValue = document.querySelector("#main-search").value.toLowerCase();
+	const inputValue = sanitizeString(
+		document.querySelector("#main-search").value
+	);
 
 	filteredRecipes = [];
 	for (let recipe of recipes) {
@@ -66,7 +72,7 @@ function removeTag(elem, type) {
 	// );
 	// console.log(tags);
 
-	elem.parentNode.remove();
+	// elem.parentNode.remove();
 	search();
 }
 
@@ -176,20 +182,20 @@ function search() {
 	displayTags(ingredients, "ingredient");
 	displayTags(appliances, "appliance");
 	displayTags(ustensils, "ustensil");
-	updateIngredientsOpt(filteredRecipes, recipes);
+	updateIngredientsOpt(filteredRecipes, ingredients);
 	// updateIngredientsOpt(filteredRecipes);
-	updateAppliancesOpt(filteredRecipes);
-	updateUstensilsOpt(filteredRecipes);
+	updateAppliancesOpt(filteredRecipes, appliances);
+	updateUstensilsOpt(filteredRecipes, ustensils);
 }
 
 function updtIngrOpt(filter) {
-	updateIngredientsOpt(filteredRecipes, recipes, filter);
+	updateIngredientsOpt(filteredRecipes, ingredients, filter);
 }
 function updtApplOpt(filter) {
-	updateAppliancesOpt(filteredRecipes, recipes, filter);
+	updateAppliancesOpt(filteredRecipes, appliances, filter);
 }
 function updtUstlOpt(filter) {
-	updateUstensilsOpt(filteredRecipes, recipes, filter);
+	updateUstensilsOpt(filteredRecipes, ustensils, filter);
 }
 
 function checkSrchUpdate() {
@@ -208,7 +214,7 @@ function checkSrchUpdate() {
 
 function initSrchFunct(recipesData) {
 	recipes = recipesData;
-  filterTags();
+	filterTags();
 
 	document
 		.querySelector("#main-search")
