@@ -4,10 +4,8 @@ function updateIngredientsOpt(recipesData, recipesTag = [], filter = "") {
 	let options = [];
 	let newRecipesTag = [];
 
-	console.log(recipesTag);
 	for (let rTag of recipesTag) {
 		newRecipesTag.push(rTag.toLowerCase());
-		console.log("new dropdown tag");
 		let li = document.createElement("li");
 		li.className = "clickable dropdown-tag";
 		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
@@ -38,10 +36,8 @@ function updateAppliancesOpt(recipesData, recipesTag = [], filter = "") {
 	let options = [];
 	let newRecipesTag = [];
 
-	console.log(recipesTag);
 	for (let rTag of recipesTag) {
 		newRecipesTag.push(rTag.toLowerCase());
-		console.log("new dropdown tag");
 		let li = document.createElement("li");
 		li.className = "clickable dropdown-tag";
 		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
@@ -70,10 +66,8 @@ function updateUstensilsOpt(recipesData, recipesTag = [], filter = "") {
 	let options = [];
 	let newRecipesTag = [];
 
-	console.log(recipesTag);
 	for (let rTag of recipesTag) {
 		newRecipesTag.push(rTag.toLowerCase());
-		console.log("new dropdown tag");
 		let li = document.createElement("li");
 		li.className = "clickable dropdown-tag";
 		li.innerHTML = `${rTag}<img class='close-btn' src='../../assets/img/dropdown-tag-close-btn.svg'>`;
@@ -98,27 +92,8 @@ function updateUstensilsOpt(recipesData, recipesTag = [], filter = "") {
 	}
 }
 
-function AddInputListener(el, type) {
-	el.addEventListener("input", function (e) {
-		switch (type) {
-			case "ingredient":
-				updtIngrOpt(el.value);
-				break;
-			case "appliance":
-				updtApplOpt(el.value);
-				break;
-			case "ustensil":
-				updtUstlOpt(el.value);
-				break;
-		}
-	});
-}
-
 function openDropdown(el) {
-	console.log(el.nextElementSibling.classList);
-	// el.nextElementSibling.classList.toggle("open");
 	el.parentElement.classList.toggle("open");
-	console.log(el.nextElementSibling.classList);
 
 	switch (el.getAttribute("for")) {
 		case "ingredient":
@@ -135,7 +110,7 @@ function initDropdownMenus() {
 	const applianceInput = document.querySelector("#appliance");
 	const ustensilInput = document.querySelector("#ustensil");
 
-	AddInputListener(ingredientInput, "ingredient");
-	AddInputListener(applianceInput, "appliance");
-	AddInputListener(ustensilInput, "ustensil");
+	ingredientInput.addEventListener("input", () => updtIngrOpt());
+	applianceInput.addEventListener("input", () => updtApplOpt());
+	ustensilInput.addEventListener("input", () => updtUstlOpt());
 }

@@ -5,12 +5,7 @@ async function getData() {
 	return data.recipes;
 }
 
-// function createRecipesElem(recipesData) {
-// 	return Array.from(recipesData, (recipe) => new RecipeCard(recipe));
-// }
-
 function displayNoResult() {
-	console.log("NO RESULT!!!");
 	document.querySelector(".article-grid").innerHTML = "";
 	const noResultContainer = document.querySelector(".no-result-container");
 	const inputValue = document.querySelector("#main-search").value;
@@ -33,10 +28,6 @@ function displayRecipes(recipesData) {
 async function init() {
 	// fetch data from JSON and build DOM elements
 	const recipesData = await getData();
-	// const recipesElem = Array.from(
-	// 	recipesData,
-	// 	(recipe) => new RecipeCard(recipe)
-	// );
 
 	// Update Display
 	displayRecipes(recipesData);

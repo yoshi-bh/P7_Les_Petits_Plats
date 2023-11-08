@@ -25,8 +25,30 @@
 			<h1>
 				CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES
 			</h1>
-			<label for="main-search" style="display: none"></label>
-			<input id="main-search" type="text" />
+			<div class="main-search-container">
+				<div>
+					<label for="main-search" style="display: none"></label>
+					<input id="main-search" type="text" />
+					<svg
+						class="clickable"
+						onclick="search()"
+						xmlns="http://www.w3.org/2000/svg"
+						width="28"
+						height="28"
+						viewBox="0 0 28 28"
+						fill="none"
+					>
+						<circle cx="10" cy="10" r="9.5" stroke="white" />
+						<line
+							x1="18.3536"
+							y1="18.6464"
+							x2="27.3536"
+							y2="27.6464"
+							stroke="white"
+						/>
+					</svg>
+				</div>
+			</div>
 		</header>
 		<main>
 			<header>
@@ -42,6 +64,24 @@
 						</div>
 						<div class="dropdown">
 							<input name="ingredient" id="ingredient" />
+							<svg
+								class="clickable"
+								onclick="updtIngrOpt()"
+								xmlns="http://www.w3.org/2000/svg"
+								width="28"
+								height="28"
+								viewBox="0 0 28 28"
+								fill="none"
+							>
+								<circle cx="10" cy="10" r="9.5" stroke="grey" />
+								<line
+									x1="18.3536"
+									y1="18.6464"
+									x2="27.3536"
+									y2="27.6464"
+									stroke="grey"
+								/>
+							</svg>
 							<ul id="ingredients"></ul>
 						</div>
 					</div>
@@ -56,6 +96,24 @@
 						</div>
 						<div class="dropdown">
 							<input name="appliance" id="appliance" />
+							<svg
+								class="clickable"
+								onclick="updtApplOpt()"
+								xmlns="http://www.w3.org/2000/svg"
+								width="28"
+								height="28"
+								viewBox="0 0 28 28"
+								fill="none"
+							>
+								<circle cx="10" cy="10" r="9.5" stroke="grey" />
+								<line
+									x1="18.3536"
+									y1="18.6464"
+									x2="27.3536"
+									y2="27.6464"
+									stroke="grey"
+								/>
+							</svg>
 							<ul id="appliances"></ul>
 						</div>
 					</div>
@@ -66,6 +124,24 @@
 						</div>
 						<div class="dropdown">
 							<input name="ustensil" id="ustensil" />
+							<svg
+								class="clickable"
+								onclick="updtUstlOpt()"
+								xmlns="http://www.w3.org/2000/svg"
+								width="28"
+								height="28"
+								viewBox="0 0 28 28"
+								fill="none"
+							>
+								<circle cx="10" cy="10" r="9.5" stroke="grey" />
+								<line
+									x1="18.3536"
+									y1="18.6464"
+									x2="27.3536"
+									y2="27.6464"
+									stroke="grey"
+								/>
+							</svg>
 							<ul id="ustensils"></ul>
 						</div>
 					</div>
