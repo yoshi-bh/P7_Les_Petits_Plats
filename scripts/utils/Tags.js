@@ -1,10 +1,10 @@
 function getTagDOM(tag, type) {
 	tagElem = document.createElement("div");
 	tagElem.className = "tag";
-  console.log("Type is: " + type)
-
 	tagElem.innerHTML = `<p>${tag}</p>
-                       <a onclick="removeTag(this, '${type}')" class="clickable">x</a>`;
+                       <a class="clickable">x</a>`;
+	tagElem.querySelector("a.clickable").onclick = () =>
+		removeTag(tag, `${type}`);
 	return tagElem;
 }
 

@@ -26,6 +26,7 @@ function filterOptions() {
 }
 
 function addTag(newTag, type) {
+	document.querySelector(`#${type}`).value = "";
 	switch (type) {
 		case "ingredient":
 			ingredients.push(newTag);
@@ -41,6 +42,7 @@ function addTag(newTag, type) {
 }
 
 function removeTag(elem, type) {
+	document.querySelector(`#${type}`).value = "";
 	switch (type) {
 		case "ingredient":
 			ingredients.splice(ingredients.indexOf(elem), 1);
@@ -52,7 +54,6 @@ function removeTag(elem, type) {
 			ustensils.splice(ustensils.indexOf(elem), 1);
 			break;
 	}
-
 	search();
 }
 
@@ -98,16 +99,11 @@ function filterTags() {
 function search() {
 	if (document.querySelector("#main-search").value.length >= 3) filterOptions();
 	else filteredRecipes = new Array(...recipes);
-	console.log("searching...........");
-	console.log(filteredRecipes);
-	console.log(recipes);
 	filterTags();
 	if (filteredRecipes.length <= 0) {
 		displayNoResult();
 		filteredRecipes = new Array(...recipes);
 	} else {
-		console.log("ELSE");
-		console.log(filteredRecipes);
 		displayRecipes(filteredRecipes);
 	}
 	resetTags();
@@ -115,40 +111,42 @@ function search() {
 	displayTags(appliances, "appliance");
 	displayTags(ustensils, "ustensil");
 	updateIngredientsOpt(filteredRecipes, ingredients);
-	// updateIngredientsOpt(filteredRecipes);
 	updateAppliancesOpt(filteredRecipes, appliances);
 	updateUstensilsOpt(filteredRecipes, ustensils);
 }
 
-function updtIngrOpt(filter) {
-	updateIngredientsOpt(filteredRecipes, ingredients, filter);
+function updtIngrOpt() {
+	updateIngredientsOpt(
+		filteredRecipes,
+		ingredients,
+		document.querySelector("#ingredient").value
+	);
 }
-function updtApplOpt(filter) {
-	updateAppliancesOpt(filteredRecipes, appliances, filter);
+function updtApplOpt() {
+	updateAppliancesOpt(
+		filteredRecipes,
+		appliances,
+		document.querySelector("#appliance").value
+	);
 }
-function updtUstlOpt(filter) {
-	updateUstensilsOpt(filteredRecipes, ustensils, filter);
+function updtUstlOpt() {
+	updateUstensilsOpt(
+		filteredRecipes,
+		ustensils,
+		document.querySelector("#ustensil").value
+	);
 }
 
 function checkSrchUpdate() {
 	const input = document.querySelector("#main-search");
 
-	if (
-		input.value.length < 3 &&
-		[...ingredients, ...appliances, ...ustensils].length === 0
-	) {
-		console.log("not long enough!");
-		return;
-	} else {
-		search();
-	}
+	search();
 }
 
 function initSrchFunct(recipesData) {
 	recipes = recipesData;
+	filteredRecipes = new Array(...recipes);
 	filterTags();
 
-	document
-		.querySelector("#main-search")
-		.addEventListener("input", checkSrchUpdate);
+	document.querySelector("#main-search").addEventListener("input", search);
 }
